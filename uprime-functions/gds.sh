@@ -4,7 +4,7 @@ currDirectory=`basename "${PWD}"` # also name of deployment.
 
 echo "Using current directory ${currDirectory} as the deployment directory. If this isn't correct, cd to the correct deployment directory and run the function."
 
-# Locate the dictionary file.
+# Locate the dictionary file. Slowly move inwards.
 
 cd ./build-artifacts/aarch64-linux
 

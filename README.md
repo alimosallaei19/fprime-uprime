@@ -20,6 +20,8 @@ All commands start with "uprime". These are the possible flags.
 | --gds | uprime --gds   | Opens a GDS server given a *linux* cross compiled deployment. To be ran in the deployment folder.            |
 | --toolchains | uprime --toolchains | Installs cross-compilers for the arm64 architecture. To be ran in the root folder of the project. |
 | --ports | uprime --ports [--remove] [port1] [port2] ... | Opens the ports for usage by GDS and other F' utilities on the machine. To be ran anywhere. |
+| --cc-build-env | uprime --cc-build-env | Sets up the cross-compiling environment for Linux arm64. To be ran anywhere. |
+| --cc-deploy | uprime --cc-deploy | Compiles the current deployment to Linux arm64. To be ran in the deployment folder. |
 
 ## Development
 
@@ -29,3 +31,7 @@ git checkout -b [uniqname/username]-[nameOfUtility]
 ```
 
 Make sure to update `README.md` and the else case of `uprime.sh` with information about the utility added. Once done, create a merge request.
+
+## Credit
+
+Created by Ali Mosallaei, developed by the MXL: F Prime team.
