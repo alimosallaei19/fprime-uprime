@@ -6,21 +6,22 @@ echo "Using current directory ${currDirectory} as the deployment directory. If t
 
 # Locate the dictionary file.
 
-step1=`cd ./build-artifacts/aarch64-linux`
+cd ./build-artifacts/aarch64-linux
 
 if [ $? -ne 0 ]; then
     echo "Error: build-artifacts directory not found. Please run this script from the deployment directory."
     exit 1
 fi
 
-step2=`cd ./${currDirectory}/dict`
+
+cd ./${currDirectory}/dict
 
 if [ $? -ne 0 ]; then
     echo "Error: deployment directory not found within build artifacts. You may need to re-cross compile or re-build the deployment"
     exit 1
 fi
 
-step3=`./${currDirectory}TopologyAppDictionary.xml`
+ls ./${currDirectory}TopologyAppDictionary.xml
 
 if [ $? -ne 0 ]; then
     echo "Error: dictionary file not found. You may need to re-cross compile or re-build the deployment"
@@ -30,6 +31,8 @@ fi
 pathToDictionary="build-artifacts/aarch64-linux/${currDirectory}/dict/${currDirectory}TopologyAppDictionary.xml"
 
 echo "Build artifact dictionary found. Opening GDS now..."
+
+cd ../../../../ > /dev/null
 
 fprime-gds -n --dictionary ${pathToDictionary}
 

@@ -17,4 +17,5 @@ All commands start with "uprime". These are the possible flags.
 
 | Flag | Example Usage | Description |
 | ---- | ------------- | ----------- |
-| -gds | uprime -gds   | Opens a GDS server given a *linux* cross compiled deployment. To be ran in the deployment folder.            |
+| --gds | uprime --gds   | Opens a GDS server given a *linux* cross compiled deployment. To be ran in the deployment folder.            |
+| --toolchains | uprime --toolchains | Installs cross-compilers for the arm64 architecture. To be ran in the root folder of the project. |
