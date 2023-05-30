@@ -22,6 +22,7 @@ All commands start with "uprime". These are the possible flags.
 | --ports | uprime --ports [--remove] [port1] [port2] ... | Opens the ports for usage by GDS and other F' utilities on the machine. To be ran anywhere. |
 | --cc-build-env | uprime --cc-build-env | Sets up the cross-compiling environment for Linux arm64. To be ran anywhere. |
 | --cc-deploy | uprime --cc-deploy | Compiles the current deployment to Linux arm64. To be ran in the deployment folder. |
+| --mv | uprime --mv [ssh connection string] | Moves the current deployment's build to a remote node. To be ran in the deployment folder AFTER deployment is generated (see --cc-deploy). |
 
 ## Development
 

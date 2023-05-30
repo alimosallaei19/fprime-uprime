@@ -25,6 +25,10 @@ case ${option} in
         echo "Executing cross-compiler deployment builder..."
         . $(dirname "$0")/uprime-functions/cc-deploy.sh
         ;;
+    --mv)
+        echo "Executing move to remote node script..."
+        . $(dirname "$0")/uprime-functions/mv.sh $@
+        ;;
     *)
         echo "Usage: uprime [option]"
         echo "Options:"
@@ -33,5 +37,6 @@ case ${option} in
         echo "  --ports: Enables/removes ports for the deployment. To be ran in the root folder of the project. Can take multiple arguments for ports."
         echo "  --cc-build-env: Builds a cross-compiler environment for the arm64 architecture. To be ran anywhere."
         echo "  --cc-deploy: Compiles the current deployment to Linux arm64. To be ran in the deployment folder."
+        echo "  --mv: Moves the current deployment's build to a remote node. To be ran in the deployment > build-artifacts folder."
         ;;
 esac
