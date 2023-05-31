@@ -29,6 +29,10 @@ case ${option} in
         echo "Executing move to remote node script..."
         . $(dirname "$0")/uprime-functions/mv.sh $@
         ;;
+    --git-init)
+        echo "Executing git init script..."
+        . $(dirname "$0")/uprime-functions/git-init.sh $@
+        ;;
     *)
         echo "Usage: uprime [option]"
         echo "Options:"
@@ -38,5 +42,6 @@ case ${option} in
         echo "  --cc-build-env: Builds a cross-compiler environment for the arm64 architecture. To be ran anywhere."
         echo "  --cc-deploy: Compiles the current deployment to Linux arm64. To be ran in the deployment folder."
         echo "  --mv: Moves the current deployment's build to a remote node. To be ran in the deployment > build-artifacts folder."
+        echo "  --git-init: Initializes a .gitignore and remote source for the project. To be ran in the root folder of the project."
         ;;
 esac
