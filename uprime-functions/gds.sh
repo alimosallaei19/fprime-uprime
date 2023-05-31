@@ -1,6 +1,8 @@
 #!/bin/bash
 
 currDirectory=`basename "${PWD}"` # also name of deployment.
+pathToDictionary="build-artifacts/aarch64-linux/"
+toCDOut="../../../"
 
 echo "Using current directory ${currDirectory} as the deployment directory. If this isn't correct, cd to the correct deployment directory and run the function."
 
@@ -17,22 +19,30 @@ fi
 cd ./${currDirectory}/dict
 
 if [ $? -ne 0 ]; then
-    echo "Error: deployment directory not found within build artifacts. You may need to re-cross compile or re-build the deployment"
-    exit 1
+    cd ./dict
+    if [ $? -ne 0 ]; then
+        echo "Error: dictionary not found within build-artifacts. You may need to re-cross compile or re-build the deployment"
+        exit 1
+    fi
+
+    pathToDictionary="${pathToDictionary}dict/"
+else 
+    pathToDictionary="${pathToDictionary}${currDirectory}/dict/"
+    toCDOut="${toCDOut}../"
 fi
 
-ls ./${currDirectory}TopologyAppDictionary.xml
+ls ./${currDirectory}TopologyAppDictionary.xml > /dev/null
 
 if [ $? -ne 0 ]; then
     echo "Error: dictionary file not found. You may need to re-cross compile or re-build the deployment"
     exit 1
 fi
 
-pathToDictionary="build-artifacts/aarch64-linux/${currDirectory}/dict/${currDirectory}TopologyAppDictionary.xml"
+pathToDictionary="${pathToDictionary}${currDirectory}TopologyAppDictionary.xml"
 
 echo "Build artifact dictionary found. Opening GDS now..."
 
-cd ../../../../ > /dev/null
+cd ${toCDOut}
 
 fprime-gds -n --dictionary ${pathToDictionary}
 
