@@ -37,6 +37,10 @@ case ${option} in
         echo "Executing cmake lists script..."
         . $(dirname "$0")/uprime-functions/cmake-lists.sh $@
         ;;
+    --replace-impls)
+        echo "Executing replace impls script..."
+        . $(dirname "$0")/uprime-functions/replace-impls.sh $@
+        ;;
     *)
         echo "Usage: uprime [option]"
         echo "Options:"
@@ -48,5 +52,6 @@ case ${option} in
         echo "  --mv: Moves the current deployment's build to a remote node. To be ran in the deployment > build-artifacts folder."
         echo "  --git-init: Initializes a .gitignore and remote source for the project. To be ran in the root folder of the project."
         echo "  --cmake-lists: Initializes a CMakeLists.txt for the project. To be ran in any directory where a CMakeLists.txt is wanted."
+        echo "  --replace-impls: Replaces all standard .cpp and .hpp files with their implementations. To be ran in a component directory."
         ;;
 esac
