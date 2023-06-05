@@ -33,6 +33,10 @@ case ${option} in
         echo "Executing git init script..."
         . $(dirname "$0")/uprime-functions/git-init.sh $@
         ;;
+    --cmake-lists)
+        echo "Executing cmake lists script..."
+        . $(dirname "$0")/uprime-functions/cmake-lists.sh $@
+        ;;
     *)
         echo "Usage: uprime [option]"
         echo "Options:"
@@ -43,5 +47,6 @@ case ${option} in
         echo "  --cc-deploy: Compiles the current deployment to Linux arm64. To be ran in the deployment folder."
         echo "  --mv: Moves the current deployment's build to a remote node. To be ran in the deployment > build-artifacts folder."
         echo "  --git-init: Initializes a .gitignore and remote source for the project. To be ran in the root folder of the project."
+        echo "  --cmake-lists: Initializes a CMakeLists.txt for the project. To be ran in any directory where a CMakeLists.txt is wanted."
         ;;
 esac
