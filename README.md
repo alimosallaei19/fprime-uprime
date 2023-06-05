@@ -25,6 +25,7 @@ All commands start with "uprime". These are the possible flags.
 | --mv | uprime --mv [ssh connection string] | Moves the current deployment's build to a remote node. To be ran in the deployment folder AFTER deployment is generated (see --cc-deploy). |
 | --git-init | uprime --git-init [remote url] | Initializes a .gitignore and remote source for the project. To be ran in the root folder of the project. |
 | --cmake-lists | uprime --cmake-lists [basic/complex] [path/to/fprime] [fileToAdd.end] | Initializes a CMakeLists.txt for the project. To be ran in any directory where a CMakeLists.txt is wanted. |
+| --replace-impls | uprime --replace-impls | Replaces the .cpp and .hpp files in the folder with the implemention files generated |
 
 ## Development
 
