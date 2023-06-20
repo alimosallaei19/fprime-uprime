@@ -41,6 +41,10 @@ case ${option} in
         echo "Executing replace impls script..."
         . $(dirname "$0")/uprime-functions/replace-impls.sh $@
         ;;
+    --build-fpv)
+        echo "Executing build fpv script..."
+        . $(dirname "$0")/uprime-functions/build-fpv.sh $@
+        ;;
     *)
         echo "Usage: uprime [option]"
         echo "Options:"
@@ -53,5 +57,6 @@ case ${option} in
         echo "  --git-init: Initializes a .gitignore and remote source for the project. To be ran in the root folder of the project."
         echo "  --cmake-lists: Initializes a CMakeLists.txt for the project. To be ran in any directory where a CMakeLists.txt is wanted."
         echo "  --replace-impls: Replaces all standard .cpp and .hpp files with their implementations. To be ran in a component directory."
+        echo "  --build-fpv: Builds the .json files needed for FPV."
         ;;
 esac
