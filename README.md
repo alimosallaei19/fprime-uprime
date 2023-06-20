@@ -26,6 +26,7 @@ All commands start with "uprime". These are the possible flags.
 | --git-init | uprime --git-init [remote url] | Initializes a .gitignore and remote source for the project. To be ran in the root folder of the project. |
 | --cmake-lists | uprime --cmake-lists [basic/complex] [path/to/fprime] [fileToAdd.end] | Initializes a CMakeLists.txt for the project. To be ran in any directory where a CMakeLists.txt is wanted. |
 | --replace-impls | uprime --replace-impls | Replaces the .cpp and .hpp files in the folder with the implemention files generated |
+| --build-fpv | uprime --build-fpv | Build all of the .json files required for the FPV. To be ran in a deployment folder.|
 
 ## Development
 
