@@ -45,6 +45,10 @@ case ${option} in
         echo "Executing build fpv script..."
         . $(dirname "$0")/uprime-functions/build-fpv.sh $@
         ;;
+    --cmd-descs)
+        echo "Executing command descriptions script..."
+        . $(dirname "$0")/uprime-functions/cmd-descs.sh $@
+        ;;
     *)
         echo "Usage: uprime [option]"
         echo "Options:"
@@ -58,5 +62,6 @@ case ${option} in
         echo "  --cmake-lists: Initializes a CMakeLists.txt for the project. To be ran in any directory where a CMakeLists.txt is wanted."
         echo "  --replace-impls: Replaces all standard .cpp and .hpp files with their implementations. To be ran in a component directory."
         echo "  --build-fpv: Builds the .json files needed for FPV."
+        echo "  --cmd-descs: Builds the command descriptions for the project. See README."
         ;;
 esac
