@@ -72,7 +72,7 @@ for i in "${allArgs[@]}"; do
                     
                     echo "# ${untouchableFileName}::${d}" > ../cmds-${now}/${untouchableFileName}/${d}.md
                     fileToAdd=../cmds-${now}/${untouchableFileName}/${d}.md
-                    echo "- [${untouchableFileName}::${d}](${untouchableFileName}/${d}.md)" >> ../cmds-${now}/README.md
+                    echo "- [${untouchableFileName}::${d}](./${untouchableFileName}/${d}.md)" >> ../cmds-${now}/README.md
                     for (( i=0; i<${#cmdNames[@]}; i++ )); do
                         echo "" >> ${fileToAdd}
                         echo "## ${cmdNames[$i]}" >> ${fileToAdd}
