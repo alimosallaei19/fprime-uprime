@@ -17,7 +17,7 @@ echo "Initializing virtual environment..."
 python3 -m venv venv
 source venv/bin/activate
 
-echo "Installing fprime..."
+echo "Installing fprime. NOTE: This will take ~30 minutes on an RPi."
 
 # install fprime
 pip install fprime-tools
