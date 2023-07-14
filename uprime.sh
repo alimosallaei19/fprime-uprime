@@ -49,6 +49,10 @@ case ${option} in
         echo "Executing command descriptions script..."
         . $(dirname "$0")/uprime-functions/cmd-descs.sh $@
         ;;
+    --dev-env)
+        echo "Executing dev env script..."
+        . $(dirname "$0")/uprime-functions/dev-env.sh $@
+        ;;
     *)
         echo "Usage: uprime [option]"
         echo "Options:"
@@ -63,5 +67,6 @@ case ${option} in
         echo "  --replace-impls: Replaces all standard .cpp and .hpp files with their implementations. To be ran in a component directory."
         echo "  --build-fpv: Builds the .json files needed for FPV."
         echo "  --cmd-descs: Builds the command descriptions for the project. See README."
+        echo "  --dev-env: Builds the development environment for the project. Run in parent of project folder."
         ;;
 esac
