@@ -27,7 +27,8 @@ All commands start with "uprime". These are the possible flags.
 | --cmake-lists | uprime --cmake-lists [basic/complex] [path/to/fprime] [fileToAdd.end] | Initializes a CMakeLists.txt for the project. To be ran in any directory where a CMakeLists.txt is wanted. |
 | --replace-impls | uprime --replace-impls | Replaces the .cpp and .hpp files in the folder with the implemention files generated |
 | --build-fpv | uprime --build-fpv | Build all of the .json files required for the FPV. To be ran in a deployment folder.|
-| --cmd-descs | uprime --cmd-descs <comp-folder-1> ... | Generate a folder of docs-enabled files to describe all commands in specified folders. To be ran in the root of the project. |
+| --cmd-descs | uprime --cmd-descs [comp-folder-1] ... | Generate a folder of docs-enabled files to describe all commands in specified folders. To be ran in the root of the project. |
+| --dev-env | uprime --dev-env [git link of project] | Clones a project from remote source, and sets up F' development environment. |
 
 ## Development
 
