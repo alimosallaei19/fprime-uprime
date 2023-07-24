@@ -13,7 +13,7 @@ topologyFile=./build-fprime-automatic-aarch64-linux/${currentFolder}/Top/${curre
 
 mkdir -p ../${currentFolder}-fpv
 
-/home/core/mxl/fprime/fpv/fprime-layout/bin/fpl-extract-xml -d ../${currentFolder}-fpv ${topologyFile}
+fpl-extract-xml -d ../${currentFolder}-fpv ${topologyFile}
 
 # check if any errors
 if [ $? -ne 0 ]; then
@@ -29,7 +29,7 @@ for file in *.xml; do
     filename="${file%.*}"
 
     # create a new folder for the fpv files
-    /home/core/mxl/fprime/fpv/fprime-layout/bin/fpl-convert-xml ${filename}.xml > ${filename}.txt
+    fpl-convert-xml ${filename}.xml > ${filename}.txt
 
     # delete the file
     rm ${filename}.xml
@@ -41,7 +41,7 @@ for file in *.txt; do
     filename="${file%.*}"
 
     # create the fpv files
-    /home/core/mxl/fprime/fpv/fprime-layout/bin/fpl-layout < ${filename}.txt > ${filename}.json
+    fpl-layout < ${filename}.txt > ${filename}.json
 
     # delete the file
     rm ${filename}.txt
