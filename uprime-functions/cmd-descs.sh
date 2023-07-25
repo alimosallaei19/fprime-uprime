@@ -71,6 +71,14 @@ for i in "${allArgs[@]}"; do
                     mkdir -p ../cmds-${now}/${untouchableFileName}
                     
                     echo "# ${untouchableFileName}::${d}" > ../cmds-${now}/${untouchableFileName}/${d}.md
+
+                    echo "// ========= ${untouchableFileName}::${d} =========" > ../cmds-${now}/${untouchableFileName}/${d}.json
+                    echo "// File for cmdGen" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                    echo "// Edit anything that says [EDIT]" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+
+                    echo "" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                    echo "{" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+
                     fileToAdd=../cmds-${now}/${untouchableFileName}/${d}.md
                     echo "- [${untouchableFileName}::${d}](./${untouchableFileName}/${d}.md)" >> ../cmds-${now}/README.md
                     for (( i=0; i<${#cmdNames[@]}; i++ )); do
@@ -84,7 +92,20 @@ for i in "${allArgs[@]}"; do
                         echo "\`\`\`" >> ${fileToAdd}
                         echo "" >> ${fileToAdd}
                         echo "---" >> ${fileToAdd}
+
+                        # create a json object to save in the json file.
+                        echo "\"${cmdNames[$i]}\": {" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                        # name field with cmdNames[$i] all lowercase, with no spaces
+                        echo "    \"name\": \"${cmdNames[$i],,}\"," >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                        echo "    // [EDIT WITH ENQUIRER SYNTAX]" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                        # close
+                        echo "}," >> ../cmds-${now}/${untouchableFileName}/${d}.json
                     done
+
+                    # remove the last comma
+                    sed -i '$ s/.$//' ../cmds-${now}/${untouchableFileName}/${d}.json
+                    # close
+                    echo "}" >> ../cmds-${now}/${untouchableFileName}/${d}.json
                     else
                         echo ">> Error: No commands found in ${file}."
                 fi
