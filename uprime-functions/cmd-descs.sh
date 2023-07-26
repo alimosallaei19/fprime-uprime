@@ -99,7 +99,7 @@ for i in "${allArgs[@]}"; do
 
                         # json for cmdGen
                         echo "\"${cmdNames[$i]}\": [" >> ${jsonToAdd}
-                        echo "    // ${cmdExamplePayloads[$i]}" >> ${jsonToAdd}
+                        echo "    \"payload\": ${cmdExamplePayloads[$i]}" >> ${jsonToAdd}
                         echo "    // [EDIT WITH ENQUIRER SYNTAX TO CREATE PROMPTS]" >> ${jsonToAdd}
                         echo "    // [SHOULD BE ARRAY OF JSON OBJECTS]" >> ${jsonToAdd}
 
