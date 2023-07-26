@@ -98,14 +98,16 @@ for i in "${allArgs[@]}"; do
                         echo "---" >> ${fileToAdd}
 
                         # json for cmdGen
-                        echo "\"${cmdNames[$i]}\": [" >> ${jsonToAdd}
-                        echo "    \"payload\": ${cmdExamplePayloads[$i]}" >> ${jsonToAdd}
+                        echo "    \"${cmdNames[$i]}\": [" >> ${jsonToAdd}
+                        echo "        {" >> ${jsonToAdd}
+                        echo "            \"payload\": \"${cmdExamplePayloads[$i]}\"" >> ${jsonToAdd}
+                        echo "        }," >> ${jsonToAdd}
                         echo "    // [EDIT WITH ENQUIRER SYNTAX TO CREATE PROMPTS]" >> ${jsonToAdd}
                         echo "    // [SHOULD BE ARRAY OF JSON OBJECTS]" >> ${jsonToAdd}
 
 
                         # close the array
-                        echo "]," >> ${jsonToAdd}
+                        echo "    ]," >> ${jsonToAdd}
                     done
 
                     # remove the last comma
