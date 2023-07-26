@@ -104,7 +104,7 @@ for i in "${allArgs[@]}"; do
                         echo "    // [SHOULD BE ARRAY OF JSON OBJECTS]" >> ${jsonToAdd}
 
 
-                        # close
+                        # close the array
                         echo "]," >> ${jsonToAdd}
 
                     # remove the last comma
