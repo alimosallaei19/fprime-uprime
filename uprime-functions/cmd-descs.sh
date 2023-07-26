@@ -106,6 +106,7 @@ for i in "${allArgs[@]}"; do
 
                         # close the array
                         echo "]," >> ${jsonToAdd}
+                    done
 
                     # remove the last comma
                     sed -i '$ s/.$//' ${jsonToAdd}
