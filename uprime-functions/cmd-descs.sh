@@ -45,7 +45,6 @@ for i in "${allArgs[@]}"; do
                     if [[ "${line}" = "// -- CMD" ]]; then
                         trackingCommand=0
                     elif [[ ${trackingCommand} -eq 0 ]]; then
-                        #remove "// " from line
                         line=`echo ${line} | cut -c4-`
                         cmdNames+=("${line}")
                         trackingCommand=1
@@ -69,19 +68,22 @@ for i in "${allArgs[@]}"; do
                     i=${i%/}
                     untouchableFileName=${untouchableFileName%/}
                     mkdir -p ../cmds-${now}/${untouchableFileName}
-                    
-                    echo "# ${untouchableFileName}::${d}" > ../cmds-${now}/${untouchableFileName}/${d}.md
+                    mkdir -p ../cmds-${now}/cmdGen/${untouchableFileName}/
 
-                    echo "// ========= ${untouchableFileName}::${d} =========" > ../cmds-${now}/${untouchableFileName}/${d}.json
-                    echo "// File for cmdGen" >> ../cmds-${now}/${untouchableFileName}/${d}.json
-                    echo "// Use syntax from https://github.com/enquirer/enquirer" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                    fileToAdd=../cmds-${now}/${untouchableFileName}/${d}.md # for humans
+                    jsonToAdd=../cmds-${now}/cmdGen/${untouchableFileName}/${d}.json # for cmdGen
 
-                    echo "" >> ../cmds-${now}/${untouchableFileName}/${d}.json
-                    echo "" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                    # start md file
+                    echo "# ${untouchableFileName}::${d}" > ${fileToAdd}
 
-                    echo "{" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                    # start json file
+                    echo "// ========= ${untouchableFileName}::${d} =========" > ${jsonToAdd}
+                    echo "// File for cmdGen" >> ${jsonToAdd}
+                    echo "// Use syntax from https://github.com/enquirer/enquirer" >> ${jsonToAdd}
+                    echo "" >> ${jsonToAdd}
+                    echo "" >> ${jsonToAdd}
+                    echo "{" >> ${jsonToAdd}
 
-                    fileToAdd=../cmds-${now}/${untouchableFileName}/${d}.md
                     echo "- [${untouchableFileName}::${d}](./${untouchableFileName}/${d}.md)" >> ../cmds-${now}/README.md
                     for (( i=0; i<${#cmdNames[@]}; i++ )); do
                         echo "" >> ${fileToAdd}
@@ -95,21 +97,20 @@ for i in "${allArgs[@]}"; do
                         echo "" >> ${fileToAdd}
                         echo "---" >> ${fileToAdd}
 
-                        # create a json object to save in the json file.
-                        echo "\"${cmdNames[$i]}\": [" >> ../cmds-${now}/${untouchableFileName}/${d}.json
-                        echo "    // ${cmdExamplePayloads[$i]}" >> ../cmds-${now}/${untouchableFileName}/${d}.json
-                        echo "    // [EDIT WITH ENQUIRER SYNTAX TO CREATE PROMPTS]" >> ../cmds-${now}/${untouchableFileName}/${d}.json
-                        echo "    // [SHOULD BE ARRAY OF JSON OBJECTS]" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                        # json for cmdGen
+                        echo "\"${cmdNames[$i]}\": [" >> ${jsonToAdd}
+                        echo "    // ${cmdExamplePayloads[$i]}" >> ${jsonToAdd}
+                        echo "    // [EDIT WITH ENQUIRER SYNTAX TO CREATE PROMPTS]" >> ${jsonToAdd}
+                        echo "    // [SHOULD BE ARRAY OF JSON OBJECTS]" >> ${jsonToAdd}
 
 
                         # close
-                        echo "]," >> ../cmds-${now}/${untouchableFileName}/${d}.json
-                    done
+                        echo "]," >> ${jsonToAdd}
 
                     # remove the last comma
-                    sed -i '$ s/.$//' ../cmds-${now}/${untouchableFileName}/${d}.json
+                    sed -i '$ s/.$//' ${jsonToAdd}
                     # close
-                    echo "}" >> ../cmds-${now}/${untouchableFileName}/${d}.json
+                    echo "}" >> ${jsonToAdd}
                     else
                         echo ">> Error: No commands found in ${file}."
                 fi
