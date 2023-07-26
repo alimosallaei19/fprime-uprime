@@ -77,12 +77,7 @@ for i in "${allArgs[@]}"; do
                     echo "# ${untouchableFileName}::${d}" > ${fileToAdd}
 
                     # start json file
-                    echo "// ========= ${untouchableFileName}::${d} =========" > ${jsonToAdd}
-                    echo "// File for cmdGen" >> ${jsonToAdd}
-                    echo "// Use syntax from https://github.com/enquirer/enquirer" >> ${jsonToAdd}
-                    echo "" >> ${jsonToAdd}
-                    echo "" >> ${jsonToAdd}
-                    echo "{" >> ${jsonToAdd}
+                    echo "{" > ${jsonToAdd}
 
                     echo "- [${untouchableFileName}::${d}](./${untouchableFileName}/${d}.md)" >> ../cmds-${now}/README.md
                     for (( i=0; i<${#cmdNames[@]}; i++ )); do
@@ -101,10 +96,7 @@ for i in "${allArgs[@]}"; do
                         echo "    \"${cmdNames[$i]}\": [" >> ${jsonToAdd}
                         echo "        {" >> ${jsonToAdd}
                         echo "            \"payload\": \"${cmdExamplePayloads[$i]}\"" >> ${jsonToAdd}
-                        echo "        }," >> ${jsonToAdd}
-                        echo "    // [EDIT WITH ENQUIRER SYNTAX TO CREATE PROMPTS]" >> ${jsonToAdd}
-                        echo "    // [SHOULD BE ARRAY OF JSON OBJECTS]" >> ${jsonToAdd}
-
+                        echo "        }" >> ${jsonToAdd}
 
                         # close the array
                         echo "    ]," >> ${jsonToAdd}
