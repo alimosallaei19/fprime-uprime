@@ -30,6 +30,7 @@ for i in "${allArgs[@]}"; do
             # open that file
             for file in ${d}*.cpp; do
                 # iterate through lines in file
+                compId=0
                 cmdInFile=0
                 trackingCommand=-1
 
@@ -41,6 +42,12 @@ for i in "${allArgs[@]}"; do
                     # check if line starts with "// -- CMD"
                     # remove all leading or trailing whitespace or tabs
                     line=`echo ${line} | sed -e 's/^[[:space:]]*//'`
+
+                    # check if line includes "0x"
+                    if [[ "${line}" == "// 0x"* ]]; then
+                        line=`echo ${line} | cut -c4-`
+                        compId="${line}"
+                    fi
 
                     if [[ "${line}" = "// -- CMD" ]]; then
                         trackingCommand=0
@@ -75,9 +82,11 @@ for i in "${allArgs[@]}"; do
 
                     # start md file
                     echo "# ${untouchableFileName}::${d}" > ${fileToAdd}
+                    echo "> Component ID: ${compId}" >> ${fileToAdd}
 
                     # start json file
                     echo "{" > ${jsonToAdd}
+                    echo "    \"componentId\": \"${compId}\"," >> ${jsonToAdd}
 
                     echo "- [${untouchableFileName}::${d}](./${untouchableFileName}/${d}.md)" >> ../cmds-${now}/README.md
                     for (( i=0; i<${#cmdNames[@]}; i++ )); do
