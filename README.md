@@ -2,6 +2,8 @@
 
 A set of command line utilities for F Prime to help with faster deployment and development. Many of these are meant to help with out-of-the-box deployments, and don't offer much customization. Feel free to edit the scripts as you please to customize to your specific deployment.
 
+**Note:** These utilities do not work on future versions of F Prime (after 3.2.0). Please make sure to review the .sh file of the command you want to run before executing it to understand what the command does.
+
 ## Installation
 
 ```
