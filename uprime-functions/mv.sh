@@ -5,7 +5,12 @@ if [ ! -d "Top" ]; then
     exit 1
 fi
 
-cd ./build-artifacts/aarch64-linux
+cd ./build-artifacts/${allArgs[2]}
+
+if [ $? -ne 0 ]; then
+    echo "Error: build-artifacts directory not found. You might need to run --cc-deploy first."
+    exit 1
+fi
 
 # create a timestamp file
 
